@@ -155,43 +155,55 @@ Now you can disconnect the XIAO ESP32C3 from the reRouter CM4 1432 and just powe
 
 <img src="https://github.com/Zachay-NAU/ESPHome-Support-on-Seeed-Studio-XIAO-ESP32C3/blob/main/pictures/28.png" width="300">
 
-## Pin Definitions
+# Grove Modules with ESPHome and Home Assistant
 
-<img src="https://github.com/Zachay-NAU/ESPHome-Support-on-Seeed-Studio-XIAO-ESP32S3/blob/main/Figures/pinout.png" width="1000">
+Now we will connect Grove modules to Seeed Studio XIAO ESP32C3 so that we can display sensor data or control the devices using Home Assistant!
 
-You can find more details by [clicking here.](https://wiki.seeedstudio.com/xiao_esp32s3_getting_started/#resources)
+  ## Connect Grove Modules to XIAO ESP32C3
 
-## Grove Compatibility List with ESPHome
+  <img src="https://github.com/Zachay-NAU/ESPHome-Support-on-Seeed-Studio-XIAO-ESP32C3/blob/main/pictures/29.png" width="700">
+  
+  In order to use Grove modules with Seeed Studio XIAO ESP32C3, we will use a [Seeed Studio Expansion Base for XIAO](https://www.seeedstudio.com/Seeeduino-XIAO-Expansion-board-p-4746.html) and connect XIAO ESP32C3 on it.
+  
+  After that, the Grove connectors on the board can be used to connect Grove modules
 
-Currently the following Grove modules are supported by ESPHome
+  ## Pin Definitions
 
-Check [here](https://esphome.io/components/sensor/index.html#see-also)
+  <img src="https://github.com/Zachay-NAU/ESPHome-Support-on-Seeed-Studio-XIAO-ESP32S3/blob/main/Figures/pinout.png" width="1000">
+  
+  You can find more details by [clicking here.](https://wiki.seeedstudio.com/xiao_esp32s3_getting_started/#resources)
 
-Now we will select 6 Grove modules from the above table and explain how they can be connected with ESPHome and Home Assistant.
-
-## Grove - Temperature and Humidity Sensor (BME680)
-
-  ### Setup Configuration
-
-  ### Visualize on Dashboard
-
-## Grove -Smart Air Quality Sensor (SGP41)
-
-  ### Setup Configuration
-
-  ### Visualize on Dashboard
-
-## OV2640 camera (XIAO ESP32S3 Sense)
-
-  ### Setup Configuration
-
-  ### Visualize on Dashboard
-
-## PDM microphone for Voice Assistant
-
-  ### Setup Configuration
-
-  ### Visualize on Dashboard
+  ## Grove Compatibility List with ESPHome
+  
+  Currently the following Grove modules are supported by ESPHome
+  
+  Check [here](https://esphome.io/components/sensor/index.html#see-also)
+  
+  Now we will select 6 Grove modules from the above table and explain how they can be connected with ESPHome and Home Assistant.
+  
+  ## Grove - Temperature and Humidity Sensor (BME680)
+  
+    ### Setup Configuration
+  
+    ### Visualize on Dashboard
+  
+  ## Grove -Smart Air Quality Sensor (SGP41)
+  
+    ### Setup Configuration
+  
+    ### Visualize on Dashboard
+  
+  ## OV2640 camera (XIAO ESP32S3 Sense)
+  
+    ### Setup Configuration
+  
+    ### Visualize on Dashboard
+  
+  ## PDM microphone for Voice Assistant
+  
+    ### Setup Configuration
+  
+    ### Visualize on Dashboard
 
 
 
