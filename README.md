@@ -157,7 +157,9 @@ Now you can disconnect the XIAO ESP32C3 from the reRouter CM4 1432 and just powe
 
 ## Pin Definitions
 
+<img src="https://github.com/Zachay-NAU/ESPHome-Support-on-Seeed-Studio-XIAO-ESP32S3/blob/main/Figures/pinout.png" width="1000">
 
+You can find more details by [clicking here.](https://wiki.seeedstudio.com/xiao_esp32s3_getting_started/#resources)
 
 ## Grove Compatibility List with ESPHome
 
