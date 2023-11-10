@@ -666,7 +666,8 @@ binary_sensor:
 - **Step 4.** Click **Add to Dashboard**
 <img src="https://github.com/Zachay-NAU/ESPHome-Support-on-Seeed-Studio-XIAO-ESP32S3/blob/main/Figures/va3.png" width="700">
 
--**Step 5.** When you press the **Button(D1)** on the Seeed Studio Expansion Base for XIAO, the user defined led (GPIO2) will be on on the esp32s3 and you can talk to esphome through **voice assitant**.
+- **Step 5.** When you press the **Button(D1)** on the Seeed Studio Expansion Base for XIAO, the user defined led (GPIO2) will be on on the esp32s3 and you can talk to esphome through **voice assitant**.
+<img src="https://github.com/Zachay-NAU/ESPHome-Support-on-Seeed-Studio-XIAO-ESP32S3/blob/main/Figures/va4.png" width="700">
 
 **Note:** For more information, please [read it.](https://esphome.io/components/voice_assistant.html)
 
