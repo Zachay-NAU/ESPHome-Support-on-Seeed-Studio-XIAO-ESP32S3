@@ -461,13 +461,15 @@ sensor:
 ### Visualize on Dashboard
 
 The Same as before.
-
+<img src="https://github.com/Zachay-NAU/ESPHome-Support-on-Seeed-Studio-XIAO-ESP32C3/blob/main/pictures/43.png" width="700">
   
 ## OV2640 camera (XIAO ESP32S3 Sense)
 
+### Setup Configuration
+
 - **Step 1.** Connect OV2640 Camera external board to the xiao esp32s3 sense
 
-- **Step 2.** Inside the **xiao-esp32s3-bme680.yaml** file that we created before, change the file and push it OTA to XIAO ESP32S3
+- **Step 2.** Inside the **xiao-esp32s3-camera.yaml** file that we created before, change the file and push it OTA to XIAO ESP32S3 sense
 
 ```
 # Configuration for ESPHome
@@ -534,14 +536,104 @@ esp32_camera_web_server:
     mode: snapshot
 ```
 
-
-### Setup Configuration
+**Note**: For more information, please read [here.](https://esphome.io/components/esp32_camera.html?highlight=camera)
   
 ### Visualize on Dashboard
+
+- **Step 1.** On the Overview page of Home Assistant, click the 3 dots and click **Edit Dashboard**
+
+<img src="https://github.com/Zachay-NAU/ESPHome-Support-on-Seeed-Studio-XIAO-ESP32C3/blob/main/pictures/31.png" width="700">
+
+- **Step 2.** Click **+ ADD CARD**
+
+<img src="https://github.com/Zachay-NAU/ESPHome-Support-on-Seeed-Studio-XIAO-ESP32C3/blob/main/pictures/32.png" width="700">
+
+- **Step 3.** Select **By ENTITY**, type **Camera** and select the **My Camera**
+<img src="https://github.com/Zachay-NAU/ESPHome-Support-on-Seeed-Studio-XIAO-ESP32S3/blob/main/Figures/cameravisulization.png" width="700">
+
+- **Step 4.** Click **Add to Dashboard**
+<img src="https://github.com/Zachay-NAU/ESPHome-Support-on-Seeed-Studio-XIAO-ESP32S3/blob/main/Figures/cameravisulization2.png" width="700">
+
   
 ## PDM microphone for Voice Assistant
   
 ### Setup Configuration
+
+- **Step 1.** Inside the **xiao-esp32s3-camera.yaml** file that we created before, change the file and push it OTA to XIAO ESP32S3 sense
+
+```
+esphome:
+  name: esp32s3
+  platformio_options:
+    build_flags: -DBOARD_HAS_PSRAM
+    board_build.arduino.memory_type: qio_opi
+    board_build.f_flash: 80000000L
+    board_build.flash_mode: qio 
+
+esp32:
+  board: esp32-s3-devkitc-1
+  framework:
+    type: arduino
+
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+
+ota:
+
+wifi:
+  ssid: "UMASS fried chicken"
+  password: "Zacharyloveschicken"
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Xiao-Esp32s3 Fallback Hotspot"
+    password: "MoLTqZUvHwWI"
+
+
+captive_portal:
+
+light:
+  - platform: status_led
+    id: light0
+    name: "voice assistant state"
+    pin:
+      number: GPIO21
+      inverted: true
+
+i2s_audio:
+  i2s_lrclk_pin: GPIO46 #useless
+  i2s_bclk_pin: GPIO42
+
+microphone:
+  - platform: i2s_audio
+    id: echo_microphone
+    i2s_din_pin: GPIO41
+    adc_type: external
+    pdm: true
+
+voice_assistant:
+  microphone: echo_microphone
+
+binary_sensor:    
+  - platform: gpio
+    pin: 
+      number: GPIO2
+      mode:
+        input: true
+        pullup: true
+    name: Boot Switch
+    internal: true
+    on_press:
+      - voice_assistant.start:
+      - light.turn_off: light0
+    on_release:
+      - voice_assistant.stop:
+      - light.turn_on: light0
+```
   
 ### Visualize on Dashboard
 
