@@ -463,17 +463,87 @@ sensor:
 The Same as before.
 
   
-  ## OV2640 camera (XIAO ESP32S3 Sense)
+## OV2640 camera (XIAO ESP32S3 Sense)
+
+- **Step 1.** Connect OV2640 Camera external board to the xiao esp32s3 sense
+
+- **Step 2.** Inside the **xiao-esp32s3-bme680.yaml** file that we created before, change the file and push it OTA to XIAO ESP32S3
+
+```
+# Configuration for ESPHome
+esphome:
+  # Name of the ESP32-S3 device
+  name: esp32s3
   
-   ### Setup Configuration
+  # PlatformIO build options
+  platformio_options:
+    build_flags: -DBOARD_HAS_PSRAM
+    board_build.arduino.memory_type: qio_opi
+    board_build.f_flash: 80000000L
+    board_build.flash_mode: qio 
+
+# Configuration for ESP32
+esp32:
+  board: esp32-s3-devkitc-1
+  framework:
+    type: arduino
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+
+# Over-the-Air update configuration
+ota:
+
+# Wi-Fi configuration
+wifi:
+  ssid: "UMASS fried chicken"
+  password: "Zacharyloveschicken"
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Xiao-Esp32s3 Fallback Hotspot"
+    password: "MoLTqZUvHwWI"
+
+# Captive portal configuration
+captive_portal:
+
+# Configuration for the ESP32 Camera
+esp32_camera:
+  id: espcam
+  name: My Camera
+  external_clock:
+    pin: GPIO10
+    frequency: 20MHz
+  i2c_pins:
+    sda: GPIO40
+    scl: GPIO39
+  data_pins: [GPIO15, GPIO17, GPIO18, GPIO16, GPIO14, GPIO12, GPIO11, GPIO48]
+  vsync_pin: GPIO38
+  href_pin: GPIO47
+  pixel_clock_pin: GPIO13
+  resolution: 800x600
   
-   ### Visualize on Dashboard
+# Configuration for the ESP32 Camera Web Server
+esp32_camera_web_server:
+  - port: 8080
+    mode: stream
+  - port: 8081
+    mode: snapshot
+```
+
+
+### Setup Configuration
   
-  ## PDM microphone for Voice Assistant
+### Visualize on Dashboard
   
-   ### Setup Configuration
+## PDM microphone for Voice Assistant
   
-   ### Visualize on Dashboard
+### Setup Configuration
+  
+### Visualize on Dashboard
 
 
 
