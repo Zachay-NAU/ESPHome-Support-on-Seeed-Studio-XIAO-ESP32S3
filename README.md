@@ -157,9 +157,9 @@ Now you can disconnect the XIAO ESP32C3 from the reRouter CM4 1432 and just powe
 
 # Grove Modules with ESPHome and Home Assistant
 
-Now we will connect Grove modules to Seeed Studio XIAO ESP32C3 so that we can display sensor data or control the devices using Home Assistant!
+Now we will connect Grove modules to Seeed Studio XIAO ESP32S3 (sense) so that we can display sensor data or control the devices using Home Assistant!
 
-  ## Connect Grove Modules to XIAO ESP32C3
+## Connect Grove Modules to XIAO ESP32S3 (sense)
 
   <img src="https://github.com/Zachay-NAU/ESPHome-Support-on-Seeed-Studio-XIAO-ESP32C3/blob/main/pictures/29.png" width="700">
   
@@ -167,13 +167,13 @@ Now we will connect Grove modules to Seeed Studio XIAO ESP32C3 so that we can di
   
   After that, the Grove connectors on the board can be used to connect Grove modules
 
-  ## Pin Definitions
+## Pin Definitions
 
   <img src="https://github.com/Zachay-NAU/ESPHome-Support-on-Seeed-Studio-XIAO-ESP32S3/blob/main/Figures/pinout.png" width="1000">
   
   You can find more details by [clicking here.](https://wiki.seeedstudio.com/xiao_esp32s3_getting_started/#resources)
 
-  ## Grove Compatibility List with ESPHome
+## Grove Compatibility List with ESPHome
   
   Currently the following Grove modules are supported by ESPHome
   
@@ -181,29 +181,67 @@ Now we will connect Grove modules to Seeed Studio XIAO ESP32C3 so that we can di
   
   Now we will select 6 Grove modules from the above table and explain how they can be connected with ESPHome and Home Assistant.
   
-  ## Grove - Temperature and Humidity Sensor (BME680)
+## Grove - Temperature and Humidity Sensor (BME680)
   
-    ### Setup Configuration
+### Setup Configuration
+- **Step 1.** Connect Grove - [Temperature, Humidity, Pressure and Gas Sensor (BME680)](https://www.seeedstudio.com/Grove-Temperature-Humidity-Pressure-and-Gas-Sensor-for-Arduino-BME680.html) to one of the I2C connectors on the Seeed Studio Expansion Base for XIAO
+- **Step 2.** Inside the **xiao-esp32s3-bme680.yaml** file that we created before, change the file and push it OTA to XIAO ESP32S3
   
-    ### Visualize on Dashboard
+```
+esphome:
+
+  name: esp32s3
   
-  ## Grove -Smart Air Quality Sensor (SGP41)
-  
-    ### Setup Configuration
-  
-    ### Visualize on Dashboard
-  
-  ## OV2640 camera (XIAO ESP32S3 Sense)
-  
-    ### Setup Configuration
-  
-    ### Visualize on Dashboard
-  
-  ## PDM microphone for Voice Assistant
-  
-    ### Setup Configuration
-  
-    ### Visualize on Dashboard
+
+  platformio_options:
+    build_flags: -DBOARD_HAS_PSRAM
+    board_build.arduino.memory_type: qio_opi
+    board_build.f_flash: 80000000L
+    board_build.flash_mode: qio 
+
+esp32:
+  board: esp32-s3-devkitc-1
+  framework:
+    type: arduino
+
+logger:
+
+api:
+
+ota:
+
+wifi:
+  ssid: "UMASS fried chicken"
+  password: "Zacharyloveschicken"
+
+  ap:
+    ssid: "Xiao-Esp32s3 Fallback Hotspot"
+    password: "MoLTqZUvHwWI"
+
+captive_portal:
+
+i2c:
+  sda: GPIO6
+  scl: GPIO7
+
+sensor:
+  - platform: bme680
+    temperature:
+      name: "BME680 Temperature"
+      oversampling: 16x
+    pressure:
+      name: "BME680 Pressure"
+    humidity:
+      name: "BME680 Humidity"
+    gas_resistance:
+      name: "BME680 Gas Resistance"
+    address: 0x76
+    update_interval: 60s
+
+```
+
+You can learn more about the [BME680 component](https://esphome.io/components/sensor/bme680) here. It allows you to use BME280, BME680, BMP085, BMP280, AHT10, AHT20 and AHT21 based sensors. Here we add the I²C Bus component because AHT20 communicates using I2C protocol.
+
 
 
 
