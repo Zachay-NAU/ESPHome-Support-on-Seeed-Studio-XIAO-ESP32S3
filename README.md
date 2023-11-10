@@ -51,7 +51,7 @@ You will see the following window if ESPHome is successfully loaded
 
 <img src="https://github.com/Zachay-NAU/ESPHome-Support-on-Seeed-Studio-XIAO-ESP32C3/blob/main/pictures/12.png" width="300">
 
-- **Step 4.** Select **ESP32-C3** and click
+- **Step 4.** Select **ESP32-S3** and click
 
 <img src="https://github.com/Zachay-NAU/ESPHome-Support-on-Seeed-Studio-XIAO-ESP32C3/blob/main/pictures/13.png" width="300">
 
@@ -71,7 +71,7 @@ You will see the following window if ESPHome is successfully loaded
 
 <img src="https://github.com/Zachay-NAU/ESPHome-Support-on-Seeed-Studio-XIAO-ESP32C3/blob/main/pictures/16.png" width="700">
 
-- **Step 9.** Connect one end of a USB Type-C cable to Seeed Studio XIAO ESP32C3 and the other end to one of the USB ports on the reRouter CM4 1432
+- **Step 9.** Connect one end of a USB Type-C cable to Seeed Studio XIAO ESP32S3 and the other end to one of the USB ports on the reRouter CM4 1432
 - 
 <img src="https://github.com/Zachay-NAU/ESPHome-Support-on-Seeed-Studio-XIAO-ESP32C3/blob/main/pictures/17.png" width="700">
 
@@ -117,7 +117,7 @@ ap:
 
 <img src="https://github.com/Zachay-NAU/ESPHome-Support-on-Seeed-Studio-XIAO-ESP32C3/blob/main/pictures/19.png" width="700">
 
-Now it will download all the necessary board packages and flash the ESPHome firmware into the XIAO ESP32C3. If the flashing is successful, you will see the following output. If you see something error, try to restart your xiao esp32c3 or enter bootloader mode by holding on the BOOT BUTTON and connect XIAO ESP32C3.
+Now it will download all the necessary board packages and flash the ESPHome firmware into the XIAO ESP32S3. If the flashing is successful, you will see the following output. If you see something error, try to restart your xiao esp32S3 or enter bootloader mode by holding on the BOOT BUTTON and connect XIAO ESP32S3.
 
 <img src="https://github.com/Zachay-NAU/ESPHome-Support-on-Seeed-Studio-XIAO-ESP32C3/blob/main/pictures/20.png" width="700">
 
@@ -127,7 +127,7 @@ Now it will download all the necessary board packages and flash the ESPHome firm
 
 - **Step 13.** If you see the board status as **ONLINE**, that means the board is successful connected to WiFi
 
-Now you can disconnect the XIAO ESP32C3 from the reRouter CM4 1432 and just power it via a USB cable. This is because from now on, if you want to flash firmware to the XIAO ESP32C3, you can simply do it OTA without connecting to the X86 board via a USB cable.
+Now you can disconnect the XIAO ESP32S3 from the reRouter CM4 1432 and just power it via a USB cable. This is because from now on, if you want to flash firmware to the XIAO ESP32S3, you can simply do it OTA without connecting to the X86 board via a USB cable.
 
 <img src="https://github.com/Zachay-NAU/ESPHome-Support-on-Seeed-Studio-XIAO-ESP32C3/blob/main/pictures/22.png" width="300">
 
@@ -163,7 +163,7 @@ Now we will connect Grove modules to Seeed Studio XIAO ESP32S3 (sense) so that w
 
   <img src="https://github.com/Zachay-NAU/ESPHome-Support-on-Seeed-Studio-XIAO-ESP32C3/blob/main/pictures/29.png" width="700">
   
-  In order to use Grove modules with Seeed Studio XIAO ESP32C3, we will use a [Seeed Studio Expansion Base for XIAO](https://www.seeedstudio.com/Seeeduino-XIAO-Expansion-board-p-4746.html) and connect XIAO ESP32C3 on it.
+  In order to use Grove modules with Seeed Studio XIAO ESP32S3, we will use a [Seeed Studio Expansion Base for XIAO](https://www.seeedstudio.com/Seeeduino-XIAO-Expansion-board-p-4746.html) and connect XIAO ESP32S3 on it.
   
   After that, the Grove connectors on the board can be used to connect Grove modules
 
@@ -299,7 +299,7 @@ Now your Home Assistant dashboard will look like below
 
 <img src="https://github.com/Zachay-NAU/ESPHome-Support-on-Seeed-Studio-XIAO-ESP32C3/blob/main/pictures/38.jpg" width="700">
 
-- **Step 2.** Inside the **xiao-esp32c3.yaml** file that we created before, change the file and push it OTA to XIAO ESP32C3
+- **Step 2.** Inside the **xiao-esp32S3.yaml** file that we created before, change the file and push it OTA to XIAO ESP32C3
 
 ```
 # Configuration for ESPHome
@@ -370,7 +370,7 @@ sensor:
 - **Step 3.** Example With Compensation
 compensation (Optional): The block containing sensors used for compensation. If not set defaults will be used.
 We will use the Temperature and Humidity Sensor (BME680) compensate for Smart Air Quality Sensor (SGP41).
-Here is the updated **xiao-esp32c3.yaml** file:
+Here is the updated **xiao-esp32S3.yaml** file:
 
 ```
 # Configuration for ESPHome
