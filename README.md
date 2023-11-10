@@ -554,7 +554,10 @@ esp32_camera_web_server:
 - **Step 4.** Click **Add to Dashboard**
 <img src="https://github.com/Zachay-NAU/ESPHome-Support-on-Seeed-Studio-XIAO-ESP32S3/blob/main/Figures/cameravisulization2.png" width="700">
 
-  
+- **Step 5.** When viewing the web stream on the dashboard, it is in idle mode, refreshing only a few frames per minute. It transitions to active mode when we click on the card, typically with a refresh rate ranging from one to ten frames per second. In this tutorial, the refresh rate is approximately four frames per second.
+
+<img src="https://github.com/Zachay-NAU/ESPHome-Support-on-Seeed-Studio-XIAO-ESP32S3/blob/main/Figures/camera.png" width="700">
+
 ## PDM microphone for Voice Assistant
   
 ### Setup Configuration
