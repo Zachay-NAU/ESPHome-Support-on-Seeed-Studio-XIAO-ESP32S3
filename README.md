@@ -188,42 +188,52 @@ Now we will connect Grove modules to Seeed Studio XIAO ESP32S3 (sense) so that w
 - **Step 2.** Inside the **xiao-esp32s3-bme680.yaml** file that we created before, change the file and push it OTA to XIAO ESP32S3
   
 ```
+# Configuration for ESPHome
 esphome:
-
+  # Name of the ESP32-S3 device
   name: esp32s3
   
-
+  # PlatformIO build options
   platformio_options:
     build_flags: -DBOARD_HAS_PSRAM
     board_build.arduino.memory_type: qio_opi
     board_build.f_flash: 80000000L
     board_build.flash_mode: qio 
 
+# Configuration for ESP32
 esp32:
   board: esp32-s3-devkitc-1
   framework:
     type: arduino
 
+# Enable logging
 logger:
 
+# Enable Home Assistant API
 api:
 
+# Over-the-Air update configuration
 ota:
 
+# Wi-Fi configuration
 wifi:
   ssid: "UMASS fried chicken"
   password: "Zacharyloveschicken"
 
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
   ap:
     ssid: "Xiao-Esp32s3 Fallback Hotspot"
     password: "MoLTqZUvHwWI"
 
+# Captive portal configuration
 captive_portal:
 
+# I2C configuration for BME680 sensor
 i2c:
   sda: GPIO6
   scl: GPIO7
 
+# BME680 sensor configuration
 sensor:
   - platform: bme680
     temperature:
@@ -237,10 +247,233 @@ sensor:
       name: "BME680 Gas Resistance"
     address: 0x76
     update_interval: 60s
-
 ```
 
-You can learn more about the [BME680 component](https://esphome.io/components/sensor/bme680) here. It allows you to use BME280, BME680, BMP085, BMP280, AHT10, AHT20 and AHT21 based sensors. Here we add the I²C Bus component because AHT20 communicates using I2C protocol.
+**Note:** You can learn more about the [BME680 component](https://esphome.io/components/sensor/bme680) here. It allows you to use BME280, BME680, BMP085, BMP280, AHT10, AHT20 and AHT21 based sensors. Here we add the I²C Bus component because AHT20 communicates using I2C protocol.
+
+
+### Visualize on Dashboard
+
+- **Step 1.** On the Overview page of Home Assistant, click the 3 dots and click **Edit Dashboard**
+
+<img src="https://github.com/Zachay-NAU/ESPHome-Support-on-Seeed-Studio-XIAO-ESP32C3/blob/main/pictures/31.png" width="700">
+
+- **Step 2.** Click **+ ADD CARD**
+
+<img src="https://github.com/Zachay-NAU/ESPHome-Support-on-Seeed-Studio-XIAO-ESP32C3/blob/main/pictures/32.png" width="700">
+
+- **Step 3.** Select **By ENTITY**, type **temperature** and select the **check box** next to **Temperature**
+
+<img src="https://github.com/Zachay-NAU/ESPHome-Support-on-Seeed-Studio-XIAO-ESP32C3/blob/main/pictures/33.png" width="700">
+
+- **Step 4.** Repeat the same for **Humidity**, **Gas Resitance** and **Pressure**
+
+- **Step 5.** Click **CONTINUE**
+
+- **Step 6.** Click **ADD TO DASHBOARD**
+
+Now your Home Assistant dashboard will look like below
+
+<img src="https://github.com/Zachay-NAU/ESPHome-Support-on-Seeed-Studio-XIAO-ESP32C3/blob/main/pictures/34.png" width="700">
+
+- **Step 7.** You can also visualize sensor data as gauges. Click **Gauge** under **BY CARD**
+
+<img src="https://github.com/Zachay-NAU/ESPHome-Support-on-Seeed-Studio-XIAO-ESP32C3/blob/main/pictures/35.png" width="700">
+
+- **Step 8.** Select **Temperature** from the drop-down menu
+
+<img src="https://github.com/Zachay-NAU/ESPHome-Support-on-Seeed-Studio-XIAO-ESP32C3/blob/main/pictures/36.png" width="700">
+
+- **Step 9.** Click **SAVE**
+
+- **Step 10.** Repeat the same for **Humidity**, **Gas Resitance** and **Pressure**
+
+- Now your dashboard will look like below
+
+<img src="https://github.com/Zachay-NAU/ESPHome-Support-on-Seeed-Studio-XIAO-ESP32C3/blob/main/pictures/37.png" width="700">
+   
+  
+## Grove -Smart Air Quality Sensor (SGP41)
+  
+- **Step 1.** Connect Grove - [Smart Air Quality Sensor (SGP41)](https://www.seeedstudio.com/Grove-Air-Quality-Sensor-SGP41-p-5687.html?queryID=3ac9c3a1ed9e1a56a66b142e8282868a&objectID=5687&indexName=bazaar_retailer_products) to one of the I2C connectors on the Seeed Studio Expansion Base for XIAO
+
+<img src="https://github.com/Zachay-NAU/ESPHome-Support-on-Seeed-Studio-XIAO-ESP32C3/blob/main/pictures/38.jpg" width="700">
+
+- **Step 2.** Inside the **xiao-esp32c3.yaml** file that we created before, change the file and push it OTA to XIAO ESP32C3
+
+```
+# Configuration for ESPHome
+esphome:
+  # Name of the ESP32-S3 device
+  name: esp32s3
+  
+  # PlatformIO build options
+  platformio_options:
+    build_flags: -DBOARD_HAS_PSRAM
+    board_build.arduino.memory_type: qio_opi
+    board_build.f_flash: 80000000L
+    board_build.flash_mode: qio 
+
+# Configuration for ESP32
+esp32:
+  board: esp32-s3-devkitc-1
+  framework:
+    type: arduino
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+
+# Over-the-Air update configuration
+ota:
+
+# Wi-Fi configuration
+wifi:
+  ssid: "UMASS fried chicken"
+  password: "Zacharyloveschicken"
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Xiao-Esp32s3 Fallback Hotspot"
+    password: "MoLTqZUvHwWI"
+
+# Captive portal configuration
+captive_portal:
+
+# SPI configuration
+spi:
+  clk_pin: GPIO8
+  mosi_pin: GPIO10
+  miso_pin: GPIO9
+
+# I2C configuration for BME680 sensor
+i2c:
+  sda: GPIO6
+  scl: GPIO7
+  scan: True
+  id: bus_a
+  frequency: 1MHz
+
+# Sensor configuration for SGP4X
+sensor:
+  - platform: sgp4x
+    voc:
+      id: sgp41_voc
+      name: "VOC Index"
+    nox:
+      id: sgp41_nox
+      name: "NOx Index"
+```
+
+- **Step 3.** Example With Compensation
+compensation (Optional): The block containing sensors used for compensation. If not set defaults will be used.
+We will use the Temperature and Humidity Sensor (BME680) compensate for Smart Air Quality Sensor (SGP41).
+Here is the updated **xiao-esp32c3.yaml** file:
+
+```
+# Configuration for ESPHome
+esphome:
+  # Name of the ESP32-S3 device
+  name: esp32s3
+  
+  # PlatformIO build options
+  platformio_options:
+    build_flags: -DBOARD_HAS_PSRAM
+    board_build.arduino.memory_type: qio_opi
+    board_build.f_flash: 80000000L
+    board_build.flash_mode: qio 
+
+# Configuration for ESP32
+esp32:
+  board: esp32-s3-devkitc-1
+  framework:
+    type: arduino
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+
+# Over-the-Air update configuration
+ota:
+
+# Wi-Fi configuration
+wifi:
+  ssid: "UMASS fried chicken"
+  password: "Zacharyloveschicken"
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Xiao-Esp32s3 Fallback Hotspot"
+    password: "MoLTqZUvHwWI"
+
+# Captive portal configuration
+captive_portal:
+
+# SPI configuration
+spi:
+  clk_pin: GPIO8
+  mosi_pin: GPIO10
+  miso_pin: GPIO9
+
+# I2C configuration for BME680 sensor
+i2c:
+  sda: GPIO6
+  scl: GPIO7
+  scan: True
+  id: bus_a
+  frequency: 1MHz
+
+# BME680 sensor configuration
+sensor:
+  - platform: bme680
+    temperature:
+      id: bme680_temp
+      name: "BME680 Temperature"
+      oversampling: 16x
+    pressure:
+      name: "BME680 Pressure"
+    humidity:
+      id: bme680_hum
+      name: "BME680 Humidity"
+    gas_resistance:
+      name: "BME680 Gas Resistance"
+    address: 0x76
+
+# SGP4X sensor configuration
+  - platform: sgp4x
+    voc:
+      name: "VOC Index"
+    nox:
+      name: "NOx Index"
+    compensation:
+      humidity_source: bme680_hum
+      temperature_source: bme680_temp
+```
+
+**Note:** This sensor will cost 90 circles for collecting enough data samples and warning cannot be avoided so far.
+
+<img src="https://github.com/Zachay-NAU/ESPHome-Support-on-Seeed-Studio-XIAO-ESP32C3/blob/main/pictures/38.png" width="700">
+
+### Visualize on Dashboard
+
+The Same as before.
+
+  
+  ## OV2640 camera (XIAO ESP32S3 Sense)
+  
+   ### Setup Configuration
+  
+   ### Visualize on Dashboard
+  
+  ## PDM microphone for Voice Assistant
+  
+   ### Setup Configuration
+  
+   ### Visualize on Dashboard
 
 
 
