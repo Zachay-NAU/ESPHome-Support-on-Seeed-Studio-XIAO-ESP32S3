@@ -562,9 +562,10 @@ esp32_camera_web_server:
   
 ### Setup Configuration
 
-- **Step 1.** Inside the **xiao-esp32s3-camera.yaml** file that we created before, change the file and push it OTA to XIAO ESP32S3 sense
+- **Step 1.** Inside the **xiao-esp32s3-microphone.yaml** file that we created before, change the file and push it OTA to XIAO ESP32S3 sense
 
 ```
+# Configuration for ESPHome
 esphome:
   name: esp32s3
   platformio_options:
@@ -573,11 +574,11 @@ esphome:
     board_build.f_flash: 80000000L
     board_build.flash_mode: qio 
 
+# Configuration for ESP32
 esp32:
   board: esp32-s3-devkitc-1
   framework:
     type: arduino
-
 
 # Enable logging
 logger:
@@ -585,8 +586,10 @@ logger:
 # Enable Home Assistant API
 api:
 
+# Over-the-Air update configuration
 ota:
 
+# Wi-Fi configuration
 wifi:
   ssid: "UMASS fried chicken"
   password: "Zacharyloveschicken"
@@ -596,21 +599,24 @@ wifi:
     ssid: "Xiao-Esp32s3 Fallback Hotspot"
     password: "MoLTqZUvHwWI"
 
-
+# Captive portal configuration
 captive_portal:
 
+# Configuration for the status LED light
 light:
   - platform: status_led
     id: light0
-    name: "voice assistant state"
+    name: "Voice Assistant State"
     pin:
       number: GPIO21
       inverted: true
 
+# Configuration for I2S audio
 i2s_audio:
-  i2s_lrclk_pin: GPIO46 #useless
+  i2s_lrclk_pin: GPIO46 # Note: labeled as "useless"
   i2s_bclk_pin: GPIO42
 
+# Configuration for the microphone using I2S audio
 microphone:
   - platform: i2s_audio
     id: echo_microphone
@@ -618,9 +624,11 @@ microphone:
     adc_type: external
     pdm: true
 
+# Configuration for the Voice Assistant
 voice_assistant:
   microphone: echo_microphone
 
+# Configuration for the binary sensor (Boot Switch)
 binary_sensor:    
   - platform: gpio
     pin: 
@@ -637,8 +645,31 @@ binary_sensor:
       - voice_assistant.stop:
       - light.turn_on: light0
 ```
-  
+
+**Note**: For more information, please read [here.](https://esphome.io/components/microphone/i2s_audio)
+
 ### Visualize on Dashboard
+
+
+- **Step 1.** On the Overview page of Home Assistant, click the 3 dots and click **Edit Dashboard**
+
+<img src="https://github.com/Zachay-NAU/ESPHome-Support-on-Seeed-Studio-XIAO-ESP32C3/blob/main/pictures/31.png" width="700">
+
+- **Step 2.** Click **+ ADD CARD**
+
+<img src="https://github.com/Zachay-NAU/ESPHome-Support-on-Seeed-Studio-XIAO-ESP32C3/blob/main/pictures/32.png" width="700">
+
+- **Step 3.** Select **By ENTITY**, then select the **Esp32S3 Assist in progress**,**Esp32S3 Assist in progress**, **Esp32S3 Finished speaking detection**, **Status** and **voice assistant state**
+<img src="https://github.com/Zachay-NAU/ESPHome-Support-on-Seeed-Studio-XIAO-ESP32S3/blob/main/Figures/va1.png" width="700">
+<img src="https://github.com/Zachay-NAU/ESPHome-Support-on-Seeed-Studio-XIAO-ESP32S3/blob/main/Figures/va2.png" width="700">
+
+- **Step 4.** Click **Add to Dashboard**
+<img src="https://github.com/Zachay-NAU/ESPHome-Support-on-Seeed-Studio-XIAO-ESP32S3/blob/main/Figures/va3.png" width="700">
+
+-**Step 5.** When you press the **Button(D1)** on the Seeed Studio Expansion Base for XIAO, the user defined led (GPIO2) will be on on the esp32s3 and you can talk to esphome through **voice assitant**.
+
+**Note:** For more information, please [read it.](https://esphome.io/components/voice_assistant.html)
+
 
 
 
