@@ -103,9 +103,9 @@ wifi:
   password: "Zacharyloveschicken"
 
   # Enable fallback hotspot (captive portal) in case wifi connection fails
-ap:
-  ssid: "Xiao-Esp32s3 Fallback Hotspot"
-  password: "MoLTqZUvHwWI"
+  ap:
+    ssid: "Xiao-Esp32s3 Fallback Hotspot"
+    password: "MoLTqZUvHwWI"
 
 ```
 
